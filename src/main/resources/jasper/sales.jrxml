@@ -1,0 +1,150 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN"
+   "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+    xmlns="http://jasperreports.sourceforge.net/jasperreports"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+   http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="report2" pageWidth="595" pageHeight="842"
+              columnWidth="555" leftMargin="20" rightMargin="20"
+              topMargin="20" bottomMargin="20">
+    <parameter name="createdBy" class="java.lang.String"/>
+    <field name="Name" class="java.lang.String">
+        <fieldDescription>
+            <![CDATA[salesName]]>
+        </fieldDescription>
+    </field>
+    <field name="Sales" class="java.lang.Integer">
+        <fieldDescription>
+            <![CDATA[salesAmount]]>
+        </fieldDescription>
+    </field>
+    <field name="Commissions" class="java.lang.Double">
+        <fieldDescription>
+            <![CDATA[commissions]]>
+        </fieldDescription>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="42" splitType="Stretch">
+            <staticText>
+                <reportElement x="64" y="0" width="481" height="42"/>
+                <textElement textAlignment="Center">
+                    <font size="20" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Sales results reports]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+     <band height = "300">
+    
+         <pieChart>
+            <chart evaluationTime = "Report">
+               <reportElement x = "135" y = "0" width = "270" height = "300"/>
+            
+               <chartTitle>
+                  <titleExpression>
+                     <![CDATA["Sales results"]]>
+                  </titleExpression>
+               </chartTitle>
+            </chart>
+         
+            <pieDataset>
+               <dataset incrementType = "None"/>
+               
+               <keyExpression>
+                  <![CDATA[$F{Name}]]>
+               </keyExpression>
+            
+               <valueExpression>
+                  <![CDATA[$F{Sales}]]>
+               </valueExpression>
+            </pieDataset>
+            
+            <piePlot>
+               <plot/>
+               <itemLabel/>
+            </piePlot>
+         </pieChart>
+
+      
+      </band>
+    </pageHeader>
+    <columnHeader>
+    	<band height="61" splitType="Stretch" >
+            <staticText >
+                <reportElement x="0" y="21" width="150" height="30" mode="Opaque" backcolor="#E6E6E6"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle" >
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Account manager]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="150" y="21" width="150" height="30" mode="Opaque" backcolor="#E6E6E6"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Sales results]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="300" y="21" width="200" height="30" mode="Opaque" backcolor="#E6E6E6"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Commissions]]></text>
+            </staticText>
+        </band>
+        
+    </columnHeader>
+    <detail>
+        <band height="20" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="0" width="150" height="15" />
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression class="java.lang.String">
+                    <![CDATA[$F{Name}]]>
+                </textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="150" y="0" width="150" height="15"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression class="java.lang.Integer">
+                    <![CDATA[$F{Sales}]]>
+                </textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="300" y="0" width="200" height="15"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle"/>
+                <textFieldExpression class="java.lang.Integer">
+                    <![CDATA[$F{Commissions}]]>
+                </textFieldExpression>
+            </textField>
+        </band>
+
+
+
+       
+    </detail>
+    
+    <pageFooter>
+        <band height="17">
+            <textField>
+                <reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <textField pattern="MM/dd/yyyy">
+                <reportElement x="0" y="4" width="280" height="13"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+</jasperReport>
